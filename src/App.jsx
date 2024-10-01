@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbare from "./components/Navbar";
 import Films from "./components/Films";
 import Rooms from "./components/Rooms";
@@ -9,9 +9,14 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 
 function App() {
+  const location = useLocation();
+
+  // Hide navbar on login and signup pages
+  const hideNavbar = location.pathname === "/login" || location.pathname === "/signup";
+
   return (
-    <Router>
-      <Navbare />
+    <>
+      {!hideNavbar && <Navbare />} {/* Conditionally render the navbar */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/films" element={<Films />} />
@@ -21,8 +26,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
-export default App;
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;
