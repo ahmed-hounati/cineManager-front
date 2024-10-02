@@ -67,6 +67,12 @@ export default function Navbare() {
           >
             About us
           </Link>
+          <Link
+            to="/contact"
+            className="text-gray-700 text-xl hover:text-[#337F5F]"
+          >
+            Contact us
+          </Link>
         </div>
 
         {/* Buttons (Hidden on mobile) */}
