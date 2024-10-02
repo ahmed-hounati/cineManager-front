@@ -6,10 +6,12 @@ export default function Signup() {
     <div className="min-h-screen flex flex-col md:flex-row items-center">
       {/* Left side: Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 mb-10 md:mb-0">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Welcome To CineManager</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">
+          Welcome To CineManager
+        </h2>
 
         <form>
-        <div className="mb-4">
+          <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Name
             </label>
@@ -46,24 +48,12 @@ export default function Signup() {
             />
           </div>
 
-          {/* Forgot password */}
-          <div className="flex justify-between mb-6">
-            <div>
-              <Link
-                to="/forgot-password"
-                className="text-sm text-gray-500 hover:text-gray-900"
-              >
-                Forgot password
-              </Link>
-            </div>
-          </div>
-
           {/* Sign in button */}
           <button
             type="submit"
             className="w-full md:w-3/4 bg-[#337F5F] text-white py-3 rounded-md text-lg font-semibold "
           >
-            Login
+            Sign Up
           </button>
         </form>
 

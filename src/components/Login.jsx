@@ -52,7 +52,7 @@ export default function Login() {
             type="submit"
             className="w-full md:w-3/4 bg-[#337F5F] text-white py-3 rounded-md text-lg font-semibold "
           >
-            Sign Up
+            Login
           </button>
         </form>
 
@@ -68,7 +68,7 @@ export default function Login() {
       {/* Right side: Image */}
       <div className="w-full md:w-1/2 flex justify-center p-8">
         <img
-          src="/login.png"
+          src="/login-page-yimage.png"
           alt="Login page side image"
           className="max-w-full h-auto object-cover rounded-lg"
         />
