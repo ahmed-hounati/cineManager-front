@@ -121,7 +121,14 @@ export default function Navbare() {
             className="text-gray-700 text-lg hover:text-[#337F5F]"
             onClick={toggleMenu}
           >
-            About us
+            About Us
+          </Link>
+          <Link
+            to="/contact"
+            className="text-gray-700 text-lg hover:text-[#337F5F]"
+            onClick={toggleMenu}
+          >
+            Contact Us
           </Link>
           <Link
             to="/login"

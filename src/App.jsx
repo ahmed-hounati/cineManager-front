@@ -7,6 +7,7 @@ import About from "./components/About";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Contact from "./components/Contact";
 
 function App() {
   const location = useLocation();
@@ -16,13 +17,14 @@ function App() {
 
   return (
     <>
-      {!hideNavbar && <Navbare />} {/* Conditionally render the navbar */}
+      {!hideNavbar && <Navbare />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/films" element={<Films />} />
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/screening" element={<Screening />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
