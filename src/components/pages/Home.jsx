@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import { Link } from "react-router-dom";
 
 export default function Home() {

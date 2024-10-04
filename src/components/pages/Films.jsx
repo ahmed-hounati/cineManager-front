@@ -1,7 +1,7 @@
 import React from "react";
-import Carousel from "./Carousel";
+import Carousel from "../Carousel";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../Footer";
 
 export default function Films() {
   return (

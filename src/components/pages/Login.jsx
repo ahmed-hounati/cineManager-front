@@ -1,14 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../services/auth.service";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    setLoading(true);
+
+    AuthService.login(email, password).then(
+      () => {
+        navigate("/dashboard");
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setLoading(false);
+        setMessage(resMessage);
+      }
+    );
+  };
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center">
       {/* Left side: Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 mb-10 md:mb-0">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Welcome back</h2>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* Email field */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
@@ -19,6 +49,8 @@ export default function Login() {
               placeholder="Enter your email"
               className="mt-1 block w-full md:w-3/4 px-4 py-3 rounded-md border border-black"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -32,6 +64,8 @@ export default function Login() {
               placeholder="••••••••"
               className="mt-1 block w-full md:w-3/4 px-4 py-3 rounded-md border border-black"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
