@@ -19,20 +19,26 @@ const login = async (email, password) => {
     if (response.data) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("user", JSON.stringify(response.data.User));
-        console.log(response.data);
     }
     return response.data;
 };
 
 const logout = async () => {
-    localStorage.removeItem("User");
+    let token = JSON.parse(localStorage.getItem("token"));
+    
+    const response = await axios.post(API_URL + "logout", {}, {
+        headers: {
+            Authorization: `bearer ${token}`,
+        }
+    });
+    localStorage.removeItem("user");
     localStorage.removeItem("token");
-    const response = await axios.post(API_URL + "logout");
+    console.log(response.data);
     return response.data;
 };
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem("token"));
+    return JSON.parse(localStorage.getItem("user"));
 };
 
 const AuthService = {

@@ -15,11 +15,12 @@ export default function Login() {
     setMessage("");
     setLoading(true);
 
-    AuthService.login(email, password).then(
-      () => {
-        navigate("/dashboard");
-      },
-      (error) => {
+    AuthService.login(email, password)
+      .then(() => {
+        navigate("/dashboard"); // Redirect to dashboard after successful login
+        window.location.reload(); // Reload the page to update UI based on logged-in state
+      })
+      .catch((error) => {
         const resMessage =
           (error.response &&
             error.response.data &&
@@ -27,11 +28,11 @@ export default function Login() {
           error.message ||
           error.toString();
 
+        setError(resMessage);
         setLoading(false);
-        setMessage(resMessage);
-      }
-    );
+      });
   };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center">
       {/* Left side: Form */}

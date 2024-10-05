@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../services/auth.service";
+import { input } from "@material-tailwind/react";
 
-export default function Navbare() {
+export default function Navbar({ currentUser, setCurrentUser }) {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const logout = () => {
+    AuthService.logout().then(setCurrentUser(undefined), navigate("/login"));
   };
 
   return (
@@ -43,6 +50,16 @@ export default function Navbare() {
 
         {/* Links (Hidden on mobile) */}
         <div className="hidden md:flex space-x-8">
+          {currentUser ? (
+            <Link
+              to="/dashboard"
+              className="text-gray-700 text-xl hover:text-[#337F5F]"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <input type="hidden" />
+          )}
           <Link
             to="/films"
             className="text-gray-700 text-xl hover:text-[#337F5F]"
@@ -76,20 +93,31 @@ export default function Navbare() {
         </div>
 
         {/* Buttons (Hidden on mobile) */}
-        <div className="hidden md:flex space-x-4">
-          <Link
-            to="/login"
-            className="text-gray-700 text-xl px-4 py-2 hover:text-gray-900"
-          >
-            LOG IN
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-[#337F5F] text-xl text-white px-4 py-2 rounded-md"
-          >
-            SIGN UP
-          </Link>
-        </div>
+        {!currentUser ? (
+          <div className="hidden md:flex space-x-4">
+            <Link
+              to="/login"
+              className="text-gray-700 text-xl px-4 py-2 hover:text-gray-900"
+            >
+              LOG IN
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-[#337F5F] text-xl text-white px-4 py-2 rounded-md"
+            >
+              SIGN UP
+            </Link>
+          </div>
+        ) : (
+          <div className="hidden md:flex space-x-4">
+            <Link
+              onClick={logout}
+              className="bg-[#337F5F] text-xl text-white px-4 py-2 rounded-md"
+            >
+              Logout
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu (Visible on mobile) */}
@@ -130,20 +158,31 @@ export default function Navbare() {
           >
             Contact Us
           </Link>
-          <Link
-            to="/login"
-            className="text-gray-700 text-lg hover:text-gray-900"
-            onClick={toggleMenu}
-          >
-            LOG IN
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-[#337F5F] text-lg text-white px-4 py-2 rounded-md"
-            onClick={toggleMenu}
-          >
-            SIGN UP
-          </Link>
+          {!currentUser ? (
+            <>
+              <Link
+                to="/login"
+                className="text-gray-700 text-lg hover:text-gray-900"
+                onClick={toggleMenu}
+              >
+                LOG IN
+              </Link>
+              <Link
+                to="/signup"
+                className="bg-[#337F5F] text-lg text-white px-4 py-2 rounded-md"
+                onClick={toggleMenu}
+              >
+                SIGN UP
+              </Link>
+            </>
+          ) : (
+            <Link
+              className="bg-[#337F5F] text-lg text-white px-4 py-2 rounded-md"
+              onClick={logout}
+            >
+              Logout
+            </Link>
+          )}
         </div>
       )}
     </nav>
