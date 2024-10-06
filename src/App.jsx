@@ -17,6 +17,8 @@ import Signup from "./components/pages/Signup";
 import Contact from "./components/pages/Contact";
 import AuthService from "./services/auth.service";
 import Dashboard from "./components/pages/Dashboard";
+import Forget from "./components/pages/Forget";
+import ResetPassword from "./components/pages/ResetPassword";
 
 function App() {
   const location = useLocation();
@@ -68,6 +70,23 @@ function App() {
           element={
             <GuestRoute>
               <Signup setCurrentUser={setCurrentUser} />
+            </GuestRoute>
+          }
+        />
+
+        <Route
+          path="/forget-password"
+          element={
+            <GuestRoute>
+              <Forget setCurrentUser={setCurrentUser} />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/reset-password/:token"
+          element={
+            <GuestRoute>
+              <ResetPassword setCurrentUser={setCurrentUser} />
             </GuestRoute>
           }
         />

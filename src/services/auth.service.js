@@ -25,7 +25,7 @@ const login = async (email, password) => {
 
 const logout = async () => {
     let token = JSON.parse(localStorage.getItem("token"));
-    
+
     const response = await axios.post(API_URL + "logout", {}, {
         headers: {
             Authorization: `bearer ${token}`,
@@ -37,6 +37,17 @@ const logout = async () => {
     return response.data;
 };
 
+const forget = async (email) => {
+    return axios.post(API_URL + 'forget', { email });
+};
+
+const resetPassword = async (token, newPassword) => {
+    console.log(token);
+    
+    return await axios.post(API_URL + `reset-password/${token}`, { newPassword });
+};
+
+
 const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
@@ -46,6 +57,8 @@ const AuthService = {
     login,
     logout,
     getCurrentUser,
+    forget,
+    resetPassword
 }
 
 export default AuthService;

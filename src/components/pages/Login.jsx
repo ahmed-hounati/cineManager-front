@@ -74,7 +74,7 @@ export default function Login() {
           <div className="flex justify-between mb-6">
             <div>
               <Link
-                to="/forgot-password"
+                to="/forget-password"
                 className="text-sm text-gray-500 hover:text-gray-900"
               >
                 Forgot password
