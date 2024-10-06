@@ -33,7 +33,7 @@ function App() {
 
   // Hide navbar on login and signup pages
   const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forget-password" || location.pathname === "/reset-password";
 
   // Protected Route Component
   const PrivateRoute = ({ children }) => {
