@@ -18,8 +18,8 @@ export default function Login() {
 
     try {
       await AuthService.login(email, password);
-      navigate("/dashboard"); // Navigate to dashboard
-      window.location.reload(); // Reload page to reflect changes
+      navigate("/dashboard");
+      window.location.reload();
     } catch (error) {
       const errorMessage =
         (error.response &&

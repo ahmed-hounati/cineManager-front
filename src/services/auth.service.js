@@ -25,6 +25,7 @@ const login = async (email, password) => {
 
 const logout = async () => {
     let token = JSON.parse(localStorage.getItem("token"));
+    
 
     const response = await axios.post(API_URL + "logout", {}, {
         headers: {
@@ -42,7 +43,6 @@ const forget = async (email) => {
 };
 
 const resetPassword = async (token, newPassword) => {
-    console.log(token);
     
     return await axios.post(API_URL + `reset-password/${token}`, { newPassword });
 };

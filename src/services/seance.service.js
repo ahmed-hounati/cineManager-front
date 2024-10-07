@@ -3,9 +3,11 @@ import axios from "axios";
 const API_URL = "http://localhost:3000/api/seance";
 
 const allSeances = async () => {
-    JSON.parse(localStorage.getItem("token"));
-    const seances = await axios.get(API_URL);
-    return seances;
+    let token = JSON.parse(localStorage.getItem("token"));
+    const response = await axios.get(API_URL, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
 
 };
 
