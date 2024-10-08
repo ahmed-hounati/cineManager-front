@@ -18,7 +18,7 @@ export default function Login() {
 
     try {
       await AuthService.login(email, password);
-      navigate("/dashboard");
+      navigate("/screening");
       window.location.reload();
     } catch (error) {
       const errorMessage =

@@ -16,7 +16,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import AuthService from "./services/auth.service";
-import Dashboard from "./pages/Dashboard";
 import Forget from "./pages/Forget";
 import ResetPassword from "./pages/ResetPassword";
 import Screen from "./pages/Screen";
@@ -47,7 +46,7 @@ function App() {
 
   // Guest Route Component to prevent authenticated users from accessing login/signup
   const GuestRoute = ({ children }) => {
-    return currentUser ? <Navigate to="/dashboard" /> : children;
+    return currentUser ? <Navigate to="/screening" /> : children;
   };
 
   return (
@@ -97,14 +96,6 @@ function App() {
         />
 
         {/* Private Routes - Only accessible when logged in */}
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
         <Route
           path="/reservation/:id"
           element={
