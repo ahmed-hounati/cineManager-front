@@ -7,20 +7,20 @@ import {
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
-import Films from "./components/pages/Films";
-import Rooms from "./components/pages/Rooms";
-import Screening from "./components/pages/Screening";
-import About from "./components/pages/About";
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
-import Signup from "./components/pages/Signup";
-import Contact from "./components/pages/Contact";
+import Films from "./pages/Films";
+import Rooms from "./pages/Rooms";
+import Screening from "./pages/Screening";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Contact from "./pages/Contact";
 import AuthService from "./services/auth.service";
-import Dashboard from "./components/pages/Dashboard";
-import Forget from "./components/pages/Forget";
-import ResetPassword from "./components/pages/ResetPassword";
-import Screen from "./components/pages/Screen";
-import Reservation from "./components/pages/Reservation";
+import Dashboard from "./pages/Dashboard";
+import Forget from "./pages/Forget";
+import ResetPassword from "./pages/ResetPassword";
+import Screen from "./pages/Screen";
+import Reservation from "./pages/Reservation";
 
 function App() {
   const location = useLocation();

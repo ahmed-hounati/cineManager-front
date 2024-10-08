@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import SeanceCard from "../cards/SeanceCard";
-import SeanceService from "../../services/seance.service";
+import SeanceCard from "../components/cards/SeanceCard";
+import SeanceService from "../services/seance.service";
 
 export default function Screening() {
   const [seances, setSeances] = useState([]);

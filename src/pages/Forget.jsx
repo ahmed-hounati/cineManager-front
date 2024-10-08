@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthService from "../../services/auth.service"; // Import AuthService
+import AuthService from "../services/auth.service"; // Import AuthService
 
 export default function Forget() {
   const [message, setMessage] = useState(""); // Success message state

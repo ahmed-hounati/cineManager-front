@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import salleService from "../../services/salle.service";
-import reservationService from "../../services/reservation.service"; // Import your reservation service
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import salleService from "../services/salle.service";
+import reservationService from "../services/reservation.service"; // Import your reservation service
 
 export default function Reservation() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const seanceId = searchParams.get("seanceId");
   const [seats, setSeats] = useState([]); // This will hold all seats with their reserved status
@@ -55,7 +56,7 @@ export default function Reservation() {
   const handleReserve = async () => {
     try {
       await reservationService.createReservation(seanceId, selectedSeats);
-      alert("Reservation successful!");
+      navigate("/")
       setSelectedSeats([]); // Clear selected seats after reservation
     } catch (error) {
       console.error("Error making reservation:", error);
@@ -64,16 +65,17 @@ export default function Reservation() {
   };
 
   return (
-    <div className="text-center">
-      <h2 className="text-lg font-semibold mb-2">Select Your Seats</h2>
-      <div className="grid grid-cols-10 gap-2">
+    <div className="text-center p-8">
+      <h2 className="text-4xl font-semibold mb-2">Available Seats</h2>
+      <h2 className="text-xl font-semibold mb-2">Select Your Seats</h2>
+      <div className="grid grid-cols-11 gap-2 text-center md:grid-cols-8">
         {seats.map(({ seatNumber, isReserved }) => {
           const isSelected = selectedSeats.includes(seatNumber);
 
           return (
             <div
               key={seatNumber}
-              className={`group flex justify-center h-[38px] w-[40px] relative ${
+              className={`group flex justify-center items-center place-self-center h-[38px] w-[40px] relative ${
                 isReserved ? "cursor-not-allowed opacity-50" : "cursor-pointer"
               }`}
               onClick={() => !isReserved && handleSeatClick(seatNumber)}

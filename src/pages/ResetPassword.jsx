@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthService from "../../services/auth.service"; // Import AuthService
+import AuthService from "../services/auth.service"; // Import AuthService
 import { useParams, useNavigate } from "react-router-dom"; // To get the token from the URL
 
 export default function ResetPassword() {
