@@ -19,6 +19,8 @@ import AuthService from "./services/auth.service";
 import Dashboard from "./components/pages/Dashboard";
 import Forget from "./components/pages/Forget";
 import ResetPassword from "./components/pages/ResetPassword";
+import Screen from "./components/pages/Screen";
+import Reservation from "./components/pages/Reservation";
 
 function App() {
   const location = useLocation();
@@ -33,7 +35,10 @@ function App() {
 
   // Hide navbar on login and signup pages
   const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forget-password" || location.pathname === "/reset-password";
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname === "/forget-password" ||
+    location.pathname === "/reset-password";
 
   // Protected Route Component
   const PrivateRoute = ({ children }) => {
@@ -52,7 +57,7 @@ function App() {
       )}
       <Routes>
         {/* Public Routes */}
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
@@ -97,6 +102,22 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reservation/:id"
+          element={
+            <PrivateRoute>
+              <Reservation />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/screen/:id"
+          element={
+            <PrivateRoute>
+              <Screen />
             </PrivateRoute>
           }
         />
