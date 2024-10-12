@@ -7,6 +7,7 @@ export default function About() {
     <div className="min-h-screen">
       {/* First Section: Image and Text */}
       <section>
+        <h2 className="text-4xl text-center mt-8">About Us</h2>
         <div className="flex flex-col md:flex-row p-8 md:p-20 justify-between items-center">
           <img
             src="/cinema.png"
@@ -22,11 +23,17 @@ export default function About() {
 
       {/* Second Section: Text and Google Map */}
       <section className="bg-[#45b595] flex flex-col md:flex-row items-center justify-between p-8">
-        <p className="text-lg md:text-xl text-white w-full md:w-[300px] text-center md:text-left mb-8 md:mb-0">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae
-          possimus neque, harum voluptatum cupiditate tempore veniam omnis
-          minima deleniti quis reprehenderit est recusandae porro nesciunt id
-          aliquam fuga soluta. Consectetur!
+        <p className="text-lg md:text-xl text-white w-full md:w-[600px] text-center md:text-left mb-8 md:mb-0">
+          CinéManager is an innovative cinema management application designed to
+          streamline the booking and screening process for movie theaters. The
+          platform allows users to easily browse available films, view detailed
+          schedules, and make seat reservations in just a few clicks. With
+          features like user authentication, film ratings, favorites management,
+          and real-time seat selection, CinéManager provides a seamless and
+          user-friendly experience for both cinema-goers and administrators. The
+          application also offers advanced functionalities such as session
+          management, customizable room layouts, and ticketing integration,
+          making it an all-in-one solution for modern theaters.
         </p>
         <div className="w-full md:w-auto flex justify-center">
           <iframe

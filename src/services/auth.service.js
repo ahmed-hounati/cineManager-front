@@ -11,31 +11,33 @@ const register = (name, email, password) => {
 };
 
 const login = async (email, password) => {
-    const response = await axios
-        .post(API_URL + "login", {
-            email,
-            password,
-        });
-    if (response.data) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        localStorage.setItem("user", JSON.stringify(response.data.User));
+    try {
+        const response = await axios.post(API_URL + "login", { email, password });
+        if (response.data) {
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.setItem("user", JSON.stringify(response.data.User));
+        }
+        return response.data;
+    } catch (error) {
+        throw error.response?.data?.message || error.message || "Login failed";
     }
-    return response.data;
 };
+
 
 const logout = async () => {
     let token = JSON.parse(localStorage.getItem("token"));
-    
-
-    const response = await axios.post(API_URL + "logout", {}, {
-        headers: {
-            Authorization: `bearer ${token}`,
-        }
-    });
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    console.log(response.data);
-    return response.data;
+    try {
+        const response = await axios.post(API_URL + "logout", {}, {
+            headers: {
+                Authorization: `bearer ${token}`,
+            }
+        });
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        return response.data;
+    } catch (error) {
+        console.log(error)
+    }
 };
 
 const forget = async (email) => {
@@ -43,7 +45,7 @@ const forget = async (email) => {
 };
 
 const resetPassword = async (token, newPassword) => {
-    
+
     return await axios.post(API_URL + `reset-password/${token}`, { newPassword });
 };
 

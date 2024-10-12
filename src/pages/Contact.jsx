@@ -7,42 +7,40 @@ export default function Contact() {
       {/* First Section: Text */}
       <section className="my-5 flex justify-center items-center px-4 md:px-0">
         <div className="p-8 md:p-16 text-center">
-          <p className="text-lg md:text-2xl max-w-lg mx-auto">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Dignissimos mollitia itaque aspernatur explicabo saepe, error, nulla
-            maxime quia tempore veniam repudiandae harum aut totam, soluta ut
-            doloremque officia! Soluta a quisquam sint laborum veniam
-            accusantium illum sequi id tempora iste eaque exercitationem ipsa
-            aut cupiditate, commodi laudantium voluptate, cum debitis.
+          <h2 className="text-4xl">Contact Us</h2>
+          <p className="mt-5 text-lg md:text-2xl max-w-lg mx-auto">
+            CinéManager is an innovative cinema management application designed
+            to streamline the booking and screening process for movie theaters.
+            The platform allows users to easily browse available films, view
+            detailed schedules.
           </p>
         </div>
       </section>
 
       {/* Second Section: Form */}
       <section className="bg-[#337F5F] py-8">
-        <div className="max-w-3xl mx-auto p-4">
-          <form className="p-4 md:p-8">
+        <div className="flex flex-col items-center justify-center gap-8 p-4">
+          <h2 className="text-3xl text-white text-center">
+            Send Us your message
+          </h2>
+          <form className="w-full max-w-lg p-4 md:p-8">
             {/* Email field */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-white">
-                Email
-              </label>
+            <div className="mb-4 flex flex-col justify-center">
+              <label className="text-sm font-medium text-white">Email</label>
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="mt-1 block w-full md:w-3/4 px-4 py-3 rounded-md border border-black"
+                className="mt-1 w-full px-4 py-3 rounded-md border border-black"
                 name="email"
               />
             </div>
 
             {/* Message field */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-white">
-                Message
-              </label>
+            <div className="mb-4 flex flex-col justify-center">
+              <label className="text-sm font-medium text-white">Message</label>
               <textarea
                 placeholder="Your message"
-                className="mt-1 block w-full md:w-3/4 px-4 py-3 h-32 rounded-md border border-black"
+                className="mt-1 w-full px-4 py-3 h-32 rounded-md border border-black"
               />
             </div>
 
