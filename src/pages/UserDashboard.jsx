@@ -3,11 +3,12 @@ import Sidebar from "../components/Sidebar";
 import FilmCard from "../components/cards/FilmCard";
 import filmService from "../services/film.service";
 import reservationService from "../services/reservation.service";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [favFilms, setFavFilms] = useState([]);
   const [reservations, setReservations] = useState([]);
-  const [error, setError] = useState(null); // Added error state to handle errors
+  const [error, setError] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -70,9 +71,12 @@ export default function Dashboard() {
           </div>
 
           {/* Account */}
-          <div className="text-white bg-gradient-to-r from-black via-[#5a7909] to-[#eb00ff] p-6 rounded-md shadow">
+          <Link
+            to={"/account"}
+            className="text-white bg-gradient-to-r from-black via-[#5a7909] to-[#eb00ff] p-6 rounded-md shadow"
+          >
             <h3 className="text-xl font-semibold">Account</h3>
-          </div>
+          </Link>
         </div>
 
         {/* Main Section */}
