@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import axios from "axios"; // Assuming you're using axios for HTTP requests
 import AuthService from "../services/auth.service";
 
 export default function Account() {
