@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import { input } from "@material-tailwind/react";
 
 export default function Navbar({ currentUser, setCurrentUser }) {
   const [isOpen, setIsOpen] = useState(false);

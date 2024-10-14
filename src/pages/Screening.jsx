@@ -27,15 +27,17 @@ export default function Screening() {
       {error && <p className="text-red-500">{error}</p>}
 
       {/* Seance Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
         {seances.length > 0 ? (
           seances.map((seance) => (
-            <SeanceCard key={seance._id} seance={seance} />
+            <div className="place-self-center" key={seance._id}>
+              <SeanceCard seance={seance} />
+            </div>
           ))
         ) : (
           <p>No seances available.</p>
         )}
-      </section>
+      </div>
     </div>
   );
 }

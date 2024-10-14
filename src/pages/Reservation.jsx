@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import salleService from "../services/salle.service";
-import reservationService from "../services/reservation.service"; // Import your reservation service
+import reservationService from "../services/reservation.service";
 
 export default function Reservation() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const seanceId = searchParams.get("seanceId");
-  const [seats, setSeats] = useState([]); // This will hold all seats with their reserved status
-  const [selectedSeats, setSelectedSeats] = useState([]); // Change to array for multiple selections
+  const [seats, setSeats] = useState([]);
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
   useEffect(() => {
     async function fetchSalleDetails() {
@@ -17,13 +17,9 @@ export default function Reservation() {
         const { salle, reservedPlaces, availablePlaces } =
           await salleService.salle(id, seanceId);
 
-        console.log("Reserved Places: ", reservedPlaces); // Debug: Check if reservedPlaces is correct
-        console.log("Available Places: ", availablePlaces); // Debug: Check if availablePlaces is correct
-
-        // Combine all seats into a single array with reserved flag
         const allSeats = availablePlaces.map((seatNumber) => ({
           seatNumber,
-          isReserved: reservedPlaces.includes(seatNumber), // Mark reserved seats
+          isReserved: reservedPlaces.includes(seatNumber),
         }));
 
         setSeats(allSeats);
@@ -43,10 +39,8 @@ export default function Reservation() {
     if (!isReserved) {
       setSelectedSeats((prevSelected) => {
         if (prevSelected.includes(seatNumber)) {
-          // If already selected, remove it
           return prevSelected.filter((seat) => seat !== seatNumber);
         } else {
-          // If not selected, add it
           return [...prevSelected, seatNumber];
         }
       });
@@ -56,8 +50,8 @@ export default function Reservation() {
   const handleReserve = async () => {
     try {
       await reservationService.createReservation(seanceId, selectedSeats);
-      navigate("/")
-      setSelectedSeats([]); // Clear selected seats after reservation
+      navigate("/");
+      setSelectedSeats([]);
     } catch (error) {
       console.error("Error making reservation:", error);
       alert("Failed to reserve seats.");
@@ -83,7 +77,7 @@ export default function Reservation() {
               <div
                 className={`w-[9px] rounded h-[21px] left-1 border border-white absolute bottom-0 group-hover:bg-amber-500 duration-300 ${
                   isReserved
-                    ? "bg-red-500" // Reserved seats are red
+                    ? "bg-red-500"
                     : isSelected
                     ? "bg-amber-500"
                     : "bg-green-700"
@@ -92,7 +86,7 @@ export default function Reservation() {
               <div
                 className={`h-full w-[70%] text-center text-black font-medium rounded group-hover:bg-amber-300 duration-300 ${
                   isReserved
-                    ? "bg-red-500 text-white" // Reserved seats are red
+                    ? "bg-red-500 text-white"
                     : isSelected
                     ? "bg-amber-300"
                     : "bg-green-400"
@@ -103,7 +97,7 @@ export default function Reservation() {
               <div
                 className={`w-[9px] rounded h-[21px] right-1 border border-white absolute bottom-0 group-hover:bg-amber-500 duration-300 ${
                   isReserved
-                    ? "bg-red-500" // Reserved seats are red
+                    ? "bg-red-500"
                     : isSelected
                     ? "bg-amber-500"
                     : "bg-green-700"
@@ -113,7 +107,6 @@ export default function Reservation() {
           );
         })}
       </div>
-      {/* Display the reserve button only if there are selected seats */}
       {selectedSeats.length > 0 && (
         <button
           className="mt-4  bg-[#337F5F] m-8 text-white p-4 rounded"

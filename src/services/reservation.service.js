@@ -3,9 +3,13 @@ import axios from "axios";
 const API_URL = "http://localhost:3000/api/reservation";
 
 const allReservations = async (user) => {
-    JSON.parse(localStorage.getItem("token"));
-    const reservations = await axios.get(API_URL + `/${user}`);
-    return reservations;
+    const token = JSON.parse(localStorage.getItem("token"));
+    const reservations = await axios.get(API_URL, {
+        headers: {
+            Authorization: `bearer ${token}`
+        }
+    });
+    return reservations.data;
 
 };
 

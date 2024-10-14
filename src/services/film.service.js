@@ -20,10 +20,24 @@ const oneFilm = async (id) => {
     return film;
 };
 
+const favFilms = async () => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const favFilms = await axios.get(API_URL + '/favorites',
+        {
+            headers: {
+                Authorization: `bearer ${token}`,
+            }
+        });
+        console.log(favFilms);
+        
+    return favFilms.data;
+};
+
 
 const filmService = {
     allFilms,
-    oneFilm
+    oneFilm,
+    favFilms
 }
 
 export default filmService;

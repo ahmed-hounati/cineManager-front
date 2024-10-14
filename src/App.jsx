@@ -20,6 +20,7 @@ import Forget from "./pages/Forget";
 import ResetPassword from "./pages/ResetPassword";
 import Screen from "./pages/Screen";
 import Reservation from "./pages/Reservation";
+import Dashboard from "./pages/UserDashboard";
 
 function App() {
   const location = useLocation();
@@ -37,7 +38,8 @@ function App() {
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
     location.pathname === "/forget-password" ||
-    location.pathname === "/reset-password";
+    location.pathname === "/reset-password" ||
+    location.pathname === "/dashboard";
 
   // Protected Route Component
   const PrivateRoute = ({ children }) => {
@@ -101,6 +103,15 @@ function App() {
           element={
             <PrivateRoute>
               <Reservation />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
             </PrivateRoute>
           }
         />
