@@ -27,15 +27,41 @@ const favFilms = async () => {
                 Authorization: `bearer ${token}`,
             }
         });
-        
+
     return favFilms.data;
+};
+
+const addFavorite = async (filmId) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const favFilm = await axios.post(API_URL + `/addFav/${filmId}`, {},
+        {
+            headers: {
+                Authorization: `bearer ${token}`,
+            }
+        });
+
+    return favFilm.data;
+};
+
+const removeFavorite = async (filmId) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const favFilm = await axios.post(API_URL + `/removeFav/${filmId}`, {},
+        {
+            headers: {
+                Authorization: `bearer ${token}`,
+            }
+        });
+
+    return favFilm.data;
 };
 
 
 const filmService = {
     allFilms,
     oneFilm,
-    favFilms
+    favFilms,
+    addFavorite,
+    removeFavorite
 }
 
 export default filmService;

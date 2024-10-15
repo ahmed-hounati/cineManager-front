@@ -64,16 +64,10 @@ export default function Dashboard() {
           <div className="text-white bg-gradient-to-r from-black via-[#790909] to-[#ff0000] p-6 rounded-md shadow">
             <h3 className="text-xl font-semibold">Recent Reservations</h3>
           </div>
-
-          {/* Rooms */}
-          <div className="text-white bg-gradient-to-r from-black via-[#09791a] to-[#f5ff00] p-6 rounded-md shadow">
-            <h3 className="text-xl font-semibold">Rooms</h3>
-          </div>
-
           {/* Account */}
           <Link
             to={"/account"}
-            className="text-white bg-gradient-to-r from-black via-[#5a7909] to-[#eb00ff] p-6 rounded-md shadow"
+            className="text-white bg-gradient-to-r from-black via-[#09791a] to-[#f5ff00] p-6 rounded-md shadow"
           >
             <h3 className="text-xl font-semibold">Account</h3>
           </Link>

@@ -6,39 +6,34 @@ export default function Films() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    // Fetch films and group them by category
-    const fetchFilms = async () => {
+    const fetchData = async () => {
       try {
-        const response = await filmService.allFilms();
-        
-        // Group films by category
-        const filmsByCategory = response.reduce((acc, film) => {
+        // Fetch all films
+        const filmsResponse = await filmService.allFilms();
+        const favoritesResponse = await filmService.favFilms();
+
+        const favoriteIds = favoritesResponse.map((film) => film._id);
+
+        // Group films by category and mark whether each film is a favorite
+        const filmsByCategory = filmsResponse.reduce((acc, film) => {
           const category = film.category;
           if (!acc[category]) {
             acc[category] = [];
           }
-          acc[category].push(film);
+
+          const isFavorite = favoriteIds.includes(film._id);
+          acc[category].push({ ...film, isFavorite });
           return acc;
         }, {});
-        
+
         setFilmsByCategory(filmsByCategory);
+        setFavorites(favoriteIds);
       } catch (error) {
-        console.error("Error fetching films", error);
+        console.error("Error fetching data", error);
       }
     };
 
-    // Fetch user's favorite films
-    const fetchFavorites = async () => {
-      try {
-        const response = await filmService.favFilms();
-        setFavorites(response);
-      } catch (error) {
-        console.error("Error fetching favorites", error);
-      }
-    };
-
-    fetchFilms();
-    fetchFavorites();
+    fetchData();
   }, []);
 
   // Function to toggle favorites
@@ -52,6 +47,15 @@ export default function Films() {
         await filmService.addFavorite(filmId);
         setFavorites((prev) => [...prev, filmId]);
       }
+
+      setFilmsByCategory((prevFilms) =>
+        Object.keys(prevFilms).reduce((acc, category) => {
+          acc[category] = prevFilms[category].map((film) =>
+            film._id === filmId ? { ...film, isFavorite: !isFavorite } : film
+          );
+          return acc;
+        }, {})
+      );
     } catch (error) {
       console.error("Error updating favorites", error);
     }
@@ -63,10 +67,15 @@ export default function Films() {
       {/* Loop through each category and display its films */}
       {Object.entries(filmsByCategory).map(([category, films]) => (
         <section key={category} className="mb-8 text-white">
-          <h2 className="text-2xl font-bold mb-4 ml-10 capitalize">{category}</h2>
+          <h2 className="text-2xl font-bold mb-4 ml-10 capitalize">
+            {category}
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
             {films.map((film) => (
-              <div key={film._id} className="relative group w-44 place-self-center">
+              <div
+                key={film._id}
+                className="relative group w-44 place-self-center"
+              >
                 <img
                   src={film.image}
                   alt={film.name}
@@ -77,7 +86,7 @@ export default function Films() {
                     onClick={() => toggleFavorite(film._id)}
                     className="text-white"
                   >
-                    {favorites.includes(film._id) ? (
+                    {film.isFavorite ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -95,7 +104,6 @@ export default function Films() {
                         fill="none"
                         stroke="currentColor"
                         className="w-6 h-6 text-white"
-                        // viewBox="0 0 24 24"
                         strokeWidth="2"
                       >
                         <path
@@ -108,7 +116,9 @@ export default function Films() {
                   </button>
                 </div>
                 <div className="mt-2">
-                  <h4 className="text-sm text-white font-medium">{film.name}</h4>
+                  <h4 className="text-sm text-white font-medium">
+                    {film.name}
+                  </h4>
                   <p className="text-xs text-white">{film.duration}</p>
                 </div>
               </div>
