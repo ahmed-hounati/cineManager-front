@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-white">
       {/* First Section: Image and Text */}
       <section>
         <h2 className="text-4xl text-center mt-8">About Us</h2>

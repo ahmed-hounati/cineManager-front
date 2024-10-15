@@ -59,7 +59,7 @@ export default function Reservation() {
   };
 
   return (
-    <div className="text-center p-8">
+    <div className="text-center p-8 text-white">
       <h2 className="text-4xl font-semibold mb-2">Available Seats</h2>
       <h2 className="text-xl font-semibold mb-2">Select Your Seats</h2>
       <div className="grid grid-cols-11 gap-2 text-center md:grid-cols-8">
@@ -75,7 +75,7 @@ export default function Reservation() {
               onClick={() => !isReserved && handleSeatClick(seatNumber)}
             >
               <div
-                className={`w-[9px] rounded h-[21px] left-1 border border-white absolute bottom-0 group-hover:bg-amber-500 duration-300 ${
+                className={`w-[9px] rounded h-[21px] left-1 border border-white absolute bottom-0 group-hover:bg-red-500 duration-300 ${
                   isReserved
                     ? "bg-red-500"
                     : isSelected
@@ -84,7 +84,7 @@ export default function Reservation() {
                 }`}
               ></div>
               <div
-                className={`h-full w-[70%] text-center text-black font-medium rounded group-hover:bg-amber-300 duration-300 ${
+                className={`h-full w-[70%] text-center text-black font-medium rounded group-hover:bg-red-300 duration-300 ${
                   isReserved
                     ? "bg-red-500 text-white"
                     : isSelected
@@ -95,7 +95,7 @@ export default function Reservation() {
                 {seatNumber}
               </div>
               <div
-                className={`w-[9px] rounded h-[21px] right-1 border border-white absolute bottom-0 group-hover:bg-amber-500 duration-300 ${
+                className={`w-[9px] rounded h-[21px] right-1 border border-white absolute bottom-0 group-hover:bg-red-500 duration-300 ${
                   isReserved
                     ? "bg-red-500"
                     : isSelected

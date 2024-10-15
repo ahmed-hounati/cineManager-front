@@ -31,7 +31,7 @@ export default function Screen() {
   }
 
   return (
-    <div className="flex items-center justify-center p-8 text-black ">
+    <div className="flex items-center justify-center p-8 text-white ">
       <section className="p-8 flex flex-col justify-center items-center">
         <h2 className="text-4xl">{seance.description}</h2>
         <div className="flex flex-row items-center justify-between gap-[30px]">

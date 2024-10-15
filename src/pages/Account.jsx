@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service";
 
 export default function Account() {
   const user = JSON.parse(localStorage.getItem("user"));
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
 
   const [email, setEmail] = useState(user?.email || "");
   const [name, setName] = useState(user?.name || "");
@@ -17,7 +17,7 @@ export default function Account() {
     try {
       const response = await AuthService.update(email, name);
       if (response) {
-        localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("token", token);
         const updatedUser = { ...user, name, email };
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setMessage("Profile updated successfully!");
@@ -34,37 +34,37 @@ export default function Account() {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-8 bg-gray-100">
+      <div className="flex-1 p-8 bg-[#181d25]">
         {/* Account Section */}
-        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-6">Account Settings</h2>
+        <div className="max-w-4xl mx-auto bg-[#000000] p-8 rounded-lg shadow-md">
+          <h2 className="text-2xl text-white  font-semibold mb-6">Account Settings</h2>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Input */}
             <div className="flex flex-col">
-              <label className="text-gray-700 font-medium mb-2" htmlFor="name">
+              <label className="text-white font-medium mb-2" htmlFor="name">
                 Name
               </label>
               <input
                 type="text"
                 id="name"
                 value={name}
-                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#337F5F]"
+                className="p-3 border border-gray-500 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#337F5F]"
                 onChange={(e) => setName(e.target.value)} // Update state
               />
             </div>
 
             {/* Email Input */}
             <div className="flex flex-col">
-              <label className="text-gray-700 font-medium mb-2" htmlFor="email">
+              <label className="text-white font-medium mb-2" htmlFor="email">
                 Email
               </label>
               <input
                 type="email"
                 id="email"
                 value={email}
-                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#337F5F]"
+                className="p-3 border border-gray-500 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#337F5F]"
                 onChange={(e) => setEmail(e.target.value)} // Update state
               />
             </div>

@@ -8,7 +8,6 @@ import {
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Films from "./pages/Films";
-import Rooms from "./pages/Rooms";
 import Screening from "./pages/Screening";
 import About from "./pages/About";
 import Home from "./pages/Home";
@@ -54,7 +53,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="bg-[#181d25]">
       {!hideNavbar && (
         <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )}
@@ -142,14 +141,6 @@ function App() {
           }
         />
         <Route
-          path="/rooms"
-          element={
-            <PrivateRoute>
-              <Rooms />
-            </PrivateRoute>
-          }
-        />
-        <Route
           path="/screening"
           element={
             <PrivateRoute>
@@ -158,7 +149,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </div>
   );
 }
 

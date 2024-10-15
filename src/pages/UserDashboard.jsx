@@ -40,12 +40,12 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-[#181d25] text-white">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-8 bg-gray-100">
+      <div className="flex-1 p-8 bg-[#181d25]">
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold">
@@ -82,13 +82,13 @@ export default function Dashboard() {
         {/* Main Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* All Reservations */}
-          <div className="bg-white p-6 rounded-md shadow">
+          <div className="bg-[#000000] p-6 rounded-md shadow">
             <h3 className="text-lg font-semibold mb-4">All Reservations</h3>
             <p className="text-6xl font-bold text-green-600">{reservations}</p>
           </div>
 
           {/* Your List */}
-          <div className="bg-white p-6 rounded-md shadow">
+          <div className="bg-[#000000] p-6 rounded-md shadow">
             <h3 className="text-lg font-semibold mb-4">Your List</h3>
             {error ? (
               <p className="text-red-500">{error}</p>

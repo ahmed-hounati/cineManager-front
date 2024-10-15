@@ -4,14 +4,13 @@ const API_URL = "http://localhost:3000/api/film";
 
 const allFilms = async () => {
     let token = JSON.parse(localStorage.getItem("token"));
-    const films = await axios.get(API_URL, {},
+    const films = await axios.get(API_URL,
         {
             headers: {
                 Authorization: `bearer ${token}`,
             }
         });
-    return films;
-
+    return films.data;
 };
 
 const oneFilm = async (id) => {
@@ -28,7 +27,6 @@ const favFilms = async () => {
                 Authorization: `bearer ${token}`,
             }
         });
-        console.log(favFilms);
         
     return favFilms.data;
 };

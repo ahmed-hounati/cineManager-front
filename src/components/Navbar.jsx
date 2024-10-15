@@ -15,7 +15,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
   };
 
   return (
-    <nav className="bg-white py-4 px-10">
+    <nav className="py-4 px-10">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="font-bold">
@@ -28,7 +28,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-gray-700 hover:text-gray-900 focus:outline-none"
+            className="text-white hover:text-white focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -52,40 +52,28 @@ export default function Navbar({ currentUser, setCurrentUser }) {
           {currentUser ? (
             <Link
               to="/dashboard"
-              className="text-gray-700 text-xl hover:text-[#337F5F]"
+              className="text-white text-xl hover:text-[#337F5F]"
             >
               Dashboard
             </Link>
           ) : (
             <input type="hidden" />
           )}
-          <Link
-            to="/films"
-            className="text-gray-700 text-xl hover:text-[#337F5F]"
-          >
+          <Link to="/films" className="text-white text-xl hover:text-[#337F5F]">
             Films
           </Link>
           <Link
-            to="/rooms"
-            className="text-gray-700 text-xl hover:text-[#337F5F]"
-          >
-            Rooms
-          </Link>
-          <Link
             to="/screening"
-            className="text-gray-700 text-xl hover:text-[#337F5F]"
+            className="text-white text-xl hover:text-[#337F5F]"
           >
             Screening
           </Link>
-          <Link
-            to="/about"
-            className="text-gray-700 text-xl hover:text-[#337F5F]"
-          >
+          <Link to="/about" className="text-white text-xl hover:text-[#337F5F]">
             About us
           </Link>
           <Link
             to="/contact"
-            className="text-gray-700 text-xl hover:text-[#337F5F]"
+            className="text-white text-xl hover:text-[#337F5F]"
           >
             Contact us
           </Link>
@@ -96,7 +84,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
           <div className="hidden md:flex space-x-4">
             <Link
               to="/login"
-              className="text-gray-700 text-xl px-4 py-2 hover:text-gray-900"
+              className="text-white text-xl px-4 py-2 hover:text-gray-900"
             >
               LOG IN
             </Link>
@@ -124,35 +112,28 @@ export default function Navbar({ currentUser, setCurrentUser }) {
         <div className="md:hidden flex flex-col space-y-4 mt-4">
           <Link
             to="/films"
-            className="text-gray-700 text-lg hover:text-[#337F5F]"
+            className="text-white text-lg hover:text-[#337F5F]"
             onClick={toggleMenu}
           >
             Films
           </Link>
           <Link
-            to="/rooms"
-            className="text-gray-700 text-lg hover:text-[#337F5F]"
-            onClick={toggleMenu}
-          >
-            Rooms
-          </Link>
-          <Link
             to="/screening"
-            className="text-gray-700 text-lg hover:text-[#337F5F]"
+            className="text-white text-lg hover:text-[#337F5F]"
             onClick={toggleMenu}
           >
             Screening
           </Link>
           <Link
             to="/about"
-            className="text-gray-700 text-lg hover:text-[#337F5F]"
+            className="text-white text-lg hover:text-[#337F5F]"
             onClick={toggleMenu}
           >
             About Us
           </Link>
           <Link
             to="/contact"
-            className="text-gray-700 text-lg hover:text-[#337F5F]"
+            className="text-white text-lg hover:text-[#337F5F]"
             onClick={toggleMenu}
           >
             Contact Us
@@ -161,7 +142,7 @@ export default function Navbar({ currentUser, setCurrentUser }) {
             <>
               <Link
                 to="/login"
-                className="text-gray-700 text-lg hover:text-gray-900"
+                className="text-white text-lg hover:text-gray-900"
                 onClick={toggleMenu}
               >
                 LOG IN

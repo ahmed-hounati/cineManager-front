@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SeanceCard({ seance }) {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[300px] h-[310px] m-4">
+    <div className="bg-[#B8DBD9] shadow-lg rounded-lg overflow-hidden w-[300px] h-[310px] my-4">
       <img
         src={seance.film.image}
         alt={seance.film.name}

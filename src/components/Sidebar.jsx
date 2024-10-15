@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
@@ -8,7 +8,7 @@ export default function Sidebar() {
     AuthService.logout().then(navigate("/login"));
   };
   return (
-    <div className="w-64 h-screen bg-white border-r">
+    <div className="w-64 h-screen bg-[#181d25] text-white border-r">
       <div className="flex items-center justify-center mt-10">
         <img
           src="/cineLogo.png"
@@ -21,7 +21,7 @@ export default function Sidebar() {
           <li>
             <Link
               to="/dashboard"
-              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-gray-700 hover:bg-[#B9F5DB]"
+              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
             >
               Dashboard
             </Link>
@@ -29,7 +29,7 @@ export default function Sidebar() {
           <li>
             <Link
               to="/reservations"
-              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-gray-700 hover:bg-[#B9F5DB]"
+              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
             >
               Reservations
             </Link>
@@ -37,7 +37,7 @@ export default function Sidebar() {
           <li>
             <Link
               to="/screening"
-              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-gray-700 hover:bg-[#B9F5DB]"
+              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
             >
               Screening
             </Link>
@@ -45,7 +45,7 @@ export default function Sidebar() {
           <li>
             <Link
               to="/films"
-              className="block text-left mx-2 px-4 rounded-xl py-2 text-lg text-gray-700 hover:bg-[#B9F5DB]"
+              className="block text-left mx-2 px-4 rounded-xl py-2 text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
             >
               Films
             </Link>

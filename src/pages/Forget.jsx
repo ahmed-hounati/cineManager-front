@@ -33,9 +33,9 @@ export default function Forget() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100">
-      <div className="w-full md:w-1/2 lg:w-1/3 bg-white p-8 rounded-md shadow-md">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#181d25]">
+      <div className="w-full md:w-1/2 lg:w-1/3 bg-gray-600 p-8 rounded-md shadow-md">
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">
           Forgot Password
         </h2>
 
@@ -54,7 +54,7 @@ export default function Forget() {
         <form onSubmit={handleForgetPassword}>
           {/* Email Input */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Email
             </label>
             <input
@@ -83,7 +83,7 @@ export default function Forget() {
       </div>
 
       <div className="mt-8">
-        <p className="text-gray-600 text-center">
+        <p className="text-white text-center">
           Enter your email address to receive password reset instructions.
         </p>
       </div>

@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         sans: ['Afacad Flux', 'sans-serif'],
       },
+      backgroundImage: {
+        'login-bg': "url('/login-bg.jpg')",
+      }
     },
     plugins: [],
   }

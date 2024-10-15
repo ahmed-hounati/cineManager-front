@@ -22,12 +22,12 @@ export default function Screening() {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <h2 className="text-3xl font-bold text-gray-800 my-8">Seances</h2>
+      <h2 className="text-3xl font-bold text-white my-8">Seances</h2>
 
       {error && <p className="text-red-500">{error}</p>}
 
       {/* Seance Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 place-self-center w-full px-8">
         {seances.length > 0 ? (
           seances.map((seance) => (
             <div className="place-self-center" key={seance._id}>

@@ -33,74 +33,76 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center flex-col">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">
-        Login to Your Account
-      </h2>
+    <div className="relative w-full bg-cover bg-center z-50">
+      <div className="min-h-screen flex items-center justify-center flex-col">
+        <h2 className="text-4xl font-bold text-[#B8DBD9] mb-6">
+          Login to Your Account
+        </h2>
 
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-md p-8 bg-white shadow-md rounded-lg"
-      >
-        {/* Email field */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="mt-1 block w-full px-4 py-3 rounded-md border border-gray-300"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        {/* Password field */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            className="mt-1 block w-full px-4 py-3 rounded-md border border-gray-300"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        {/* Error or success message */}
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        {message && <p className="text-green-500 mb-4">{message}</p>}
-
-        {/* Forgot password and submit button */}
-        <div className="flex justify-between mb-6">
-          <Link
-            to="/forget-password"
-            className="text-sm text-gray-500 hover:text-gray-900"
-          >
-            Forgot password?
-          </Link>
-        </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full py-3 rounded-md text-lg font-semibold ${
-            loading ? "bg-gray-400" : "bg-[#337F5F] text-white"
-          } `}
+        <form
+          onSubmit={handleLogin}
+          className="w-full max-w-md p-8 bg-gray-600 shadow-md rounded-lg"
         >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          {/* Email field */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-white">
+              Email
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="mt-1 block w-full px-4 py-3 rounded-md border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-      {/* Sign up link */}
-      <p className="mt-4 text-center text-gray-500">
-        Don’t have an account?{" "}
-        <Link to="/signup" className="text-[#337F5F] hover:text-green-700">
-          Sign up
-        </Link>
-      </p>
+          {/* Password field */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-white">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className="mt-1 block w-full px-4 py-3 rounded-md border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          {/* Error or success message */}
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {message && <p className="text-green-500 mb-4">{message}</p>}
+
+          {/* Forgot password and submit button */}
+          <div className="flex justify-between mb-6">
+            <Link
+              to="/forget-password"
+              className="text-sm text-white hover:text-gray-900"
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 rounded-md text-lg font-semibold ${
+              loading ? "bg-gray-400" : "bg-[#337F5F] text-white"
+            } `}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        {/* Sign up link */}
+        <p className="mt-4 text-center text-white">
+          Don’t have an account?{" "}
+          <Link to="/signup" className="text-[#B8DBD9] hover:text-green-700">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
