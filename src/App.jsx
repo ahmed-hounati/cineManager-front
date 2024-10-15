@@ -21,6 +21,7 @@ import Screen from "./pages/Screen";
 import Reservation from "./pages/Reservation";
 import Dashboard from "./pages/UserDashboard";
 import Account from "./pages/Account";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const location = useLocation();
@@ -33,14 +34,15 @@ function App() {
     }
   }, []);
 
-  // Hide navbar on login and signup pages
-  const hideNavbar =
+  // Hide sidebar on specific pages
+  const hideSidebar =
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
     location.pathname === "/forget-password" ||
     location.pathname === "/reset-password" ||
-    location.pathname === "/dashboard" ||
-    location.pathname === "/account";
+    location.pathname === "/about" ||
+    location.pathname === "/" ||
+    location.pathname === "/contact";
 
   // Protected Route Component
   const PrivateRoute = ({ children }) => {
@@ -53,102 +55,104 @@ function App() {
   };
 
   return (
-    <div className="bg-[#181d25]">
-      {!hideNavbar && (
-        <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
+    <div className="flex h-screen bg-[#181d25]">
+      {!hideSidebar && (
+        <Sidebar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )}
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+      <div className={`flex-1 ${!hideSidebar ? "ml-64" : ""}`}>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-        {/* Guest-Only Routes */}
-        <Route
-          path="/login"
-          element={
-            <GuestRoute>
-              <Login setCurrentUser={setCurrentUser} />
-            </GuestRoute>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <GuestRoute>
-              <Signup setCurrentUser={setCurrentUser} />
-            </GuestRoute>
-          }
-        />
+          {/* Guest-Only Routes */}
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <Login setCurrentUser={setCurrentUser} />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <GuestRoute>
+                <Signup setCurrentUser={setCurrentUser} />
+              </GuestRoute>
+            }
+          />
 
-        <Route
-          path="/forget-password"
-          element={
-            <GuestRoute>
-              <Forget setCurrentUser={setCurrentUser} />
-            </GuestRoute>
-          }
-        />
-        <Route
-          path="/reset-password/:token"
-          element={
-            <GuestRoute>
-              <ResetPassword setCurrentUser={setCurrentUser} />
-            </GuestRoute>
-          }
-        />
+          <Route
+            path="/forget-password"
+            element={
+              <GuestRoute>
+                <Forget setCurrentUser={setCurrentUser} />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path="/reset-password/:token"
+            element={
+              <GuestRoute>
+                <ResetPassword setCurrentUser={setCurrentUser} />
+              </GuestRoute>
+            }
+          />
 
-        {/* Private Routes - Only accessible when logged in */}
-        <Route
-          path="/reservation/:id"
-          element={
-            <PrivateRoute>
-              <Reservation />
-            </PrivateRoute>
-          }
-        />
+          {/* Private Routes - Only accessible when logged in */}
+          <Route
+            path="/reservation/:id"
+            element={
+              <PrivateRoute>
+                <Reservation />
+              </PrivateRoute>
+            }
+          />
 
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <PrivateRoute>
-              <Account />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/screen/:id"
-          element={
-            <PrivateRoute>
-              <Screen />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/films"
-          element={
-            <PrivateRoute>
-              <Films />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/screening"
-          element={
-            <PrivateRoute>
-              <Screening />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute>
+                <Account />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/screen/:id"
+            element={
+              <PrivateRoute>
+                <Screen />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/films"
+            element={
+              <PrivateRoute>
+                <Films />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/screening"
+            element={
+              <PrivateRoute>
+                <Screening />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }

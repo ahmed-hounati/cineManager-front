@@ -33,7 +33,7 @@ export default function Login() {
   };
 
   return (
-    <div className="relative w-full bg-cover bg-center z-50">
+    <div className="relative w-full bg-cover bg-center bg-[#181d25]">
       <div className="min-h-screen flex items-center justify-center flex-col">
         <h2 className="text-4xl font-bold text-[#B8DBD9] mb-6">
           Login to Your Account

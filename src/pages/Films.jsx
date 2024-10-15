@@ -62,7 +62,7 @@ export default function Films() {
   };
 
   return (
-    <div className="p-8">
+    <div className="bg-[#181d25] p-8">
       <h1 className="text-center text-white text-5xl p-4">Films</h1>
       {/* Loop through each category and display its films */}
       {Object.entries(filmsByCategory).map(([category, films]) => (

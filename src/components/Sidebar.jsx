@@ -2,13 +2,15 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-export default function Sidebar() {
+export default function Sidebar({ currentUser, setCurrentUser }) {
   const navigate = useNavigate();
+
   const logout = () => {
-    AuthService.logout().then(navigate("/login"));
+    AuthService.logout().then(setCurrentUser(undefined), navigate("/login"));
   };
+
   return (
-    <div className="w-64 h-screen bg-[#181d25] text-white border-r">
+    <div className="fixed inset-y-0 left-0 w-64 h-screen bg-[#181d25] text-white border-r">
       <div className="flex items-center justify-center mt-10">
         <img
           src="/cineLogo.png"
@@ -45,7 +47,7 @@ export default function Sidebar() {
           <li>
             <Link
               to="/films"
-              className="block text-left mx-2 px-4 rounded-xl py-2 text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
+              className="block text-left mx-2 px-4 py-2 rounded-xl text-lg text-white hover:bg-[#B9F5DB] hover:text-gray-800"
             >
               Films
             </Link>
@@ -53,12 +55,12 @@ export default function Sidebar() {
         </ul>
       </div>
       <div className="absolute bottom-0 left-0 w-full p-4">
-        <Link
+        <button
           onClick={logout}
-          className="w-auto px-2 bg-[#337F5F] text-white py-2 rounded-md "
+          className="w-full px-2 py-2 bg-[#337F5F] text-white rounded-md"
         >
           Logout
-        </Link>
+        </button>
       </div>
     </div>
   );
