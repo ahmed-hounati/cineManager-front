@@ -1,10 +1,12 @@
 import React from "react";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
+      <Navbar />
       <div className="min-h-screen bg-[#337F5F]">
         {/* Header Section */}
         <section className="text-center py-16 md:py-20 p-8 bg-[#337F5F]">

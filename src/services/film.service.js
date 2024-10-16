@@ -14,9 +14,13 @@ const allFilms = async () => {
 };
 
 const oneFilm = async (id) => {
-    JSON.parse(localStorage.getItem("token"));
-    const film = await axios.get(API_URL + `/${id}`);
-    return film;
+    let token = JSON.parse(localStorage.getItem("token"));
+    const film = await axios.get(API_URL + `/${id}`, {
+        headers: {
+            Authorization: `bearer ${token}`,
+        }
+    });
+    return film.data;
 };
 
 const favFilms = async () => {
@@ -55,13 +59,26 @@ const removeFavorite = async (filmId) => {
     return favFilm.data;
 };
 
+const getAverageRating = async (filmId) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const rating = await axios.get(API_URL + `/average-rating/${filmId}`,
+        {
+            headers: {
+                Authorization: `bearer ${token}`,
+            }
+        });
+
+    return rating.data;
+}
+
 
 const filmService = {
     allFilms,
     oneFilm,
     favFilms,
     addFavorite,
-    removeFavorite
+    removeFavorite,
+    getAverageRating
 }
 
 export default filmService;

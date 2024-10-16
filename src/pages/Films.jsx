@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import filmService from "../services/film.service";
+import { Link } from "react-router-dom";
 
 export default function Films() {
   const [filmsByCategory, setFilmsByCategory] = useState({});
@@ -8,25 +9,24 @@ export default function Films() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch all films
+        // Fetch all films and favorite films
         const filmsResponse = await filmService.allFilms();
         const favoritesResponse = await filmService.favFilms();
 
         const favoriteIds = favoritesResponse.map((film) => film._id);
 
         // Group films by category and mark whether each film is a favorite
-        const filmsByCategory = filmsResponse.reduce((acc, film) => {
-          const category = film.category;
+        const groupedFilms = filmsResponse.reduce((acc, film) => {
+          const { category } = film;
           if (!acc[category]) {
             acc[category] = [];
           }
-
           const isFavorite = favoriteIds.includes(film._id);
           acc[category].push({ ...film, isFavorite });
           return acc;
         }, {});
 
-        setFilmsByCategory(filmsByCategory);
+        setFilmsByCategory(groupedFilms);
         setFavorites(favoriteIds);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -48,6 +48,7 @@ export default function Films() {
         setFavorites((prev) => [...prev, filmId]);
       }
 
+      // Update films by category state to reflect the favorite status change
       setFilmsByCategory((prevFilms) =>
         Object.keys(prevFilms).reduce((acc, category) => {
           acc[category] = prevFilms[category].map((film) =>
@@ -115,12 +116,14 @@ export default function Films() {
                     )}
                   </button>
                 </div>
-                <div className="mt-2">
-                  <h4 className="text-sm text-white font-medium">
-                    {film.name}
-                  </h4>
-                  <p className="text-xs text-white">{film.duration}</p>
-                </div>
+                <Link to={`/film/${film._id}`}>
+                  <div className="mt-2">
+                    <h4 className="text-xl text-white font-medium">
+                      {film.name}
+                    </h4>
+                    <p className="text-xs text-white">{film.duration}</p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>

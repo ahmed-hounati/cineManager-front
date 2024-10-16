@@ -6,7 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
 import Films from "./pages/Films";
 import Screening from "./pages/Screening";
 import About from "./pages/About";
@@ -22,6 +21,7 @@ import Reservation from "./pages/Reservation";
 import Dashboard from "./pages/UserDashboard";
 import Account from "./pages/Account";
 import Sidebar from "./components/Sidebar";
+import Film from "./pages/Film";
 
 function App() {
   const location = useLocation();
@@ -107,6 +107,15 @@ function App() {
             element={
               <PrivateRoute>
                 <Reservation />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/film/:id"
+            element={
+              <PrivateRoute>
+                <Film />
               </PrivateRoute>
             }
           />
