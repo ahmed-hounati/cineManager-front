@@ -72,13 +72,28 @@ const getAverageRating = async (filmId) => {
 }
 
 
+const addRating = async (filmId, newRating) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const response = await axios.post(API_URL + `/rate/${filmId}`, {
+        rating: newRating
+    }, {
+        headers: {
+            Authorization: `bearer ${token}`,
+        }
+    })
+
+    return response.data;
+}
+
+
 const filmService = {
     allFilms,
     oneFilm,
     favFilms,
     addFavorite,
     removeFavorite,
-    getAverageRating
+    getAverageRating,
+    addRating
 }
 
 export default filmService;

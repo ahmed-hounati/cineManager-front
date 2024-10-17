@@ -6,7 +6,7 @@ import FilmCard from "../components/cards/FilmCard";
 import Comments from "./Comments";
 import AddCommentPopup from "../components/Popup";
 import UpdatePopup from "../components/UpdatePopup";
-import { comment } from "postcss";
+import Rating from "../components/RatingPopup";
 
 export default function Film() {
   const { id } = useParams();
@@ -15,6 +15,7 @@ export default function Film() {
   const [comments, setComments] = useState([]);
   const [rating, setRating] = useState({});
   const [popup, setPopup] = useState(false);
+  const [ratingPopup, setRatingPopup] = useState(false);
   const [showUpdatePopup, setShowUpdatePopup] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [selectedComment, setSelectedComment] = useState(null);
@@ -71,6 +72,7 @@ export default function Film() {
       console.error("Error adding comment:", error);
     }
   };
+
   // Open update popup with selected comment
   const handleUpdateClick = (comment) => {
     setSelectedComment(comment);
@@ -92,6 +94,17 @@ export default function Film() {
       }
     } catch (error) {
       console.error("Error updating comment:", error);
+    }
+  };
+
+  const handleRatingSubmit = async (rating) => {
+    try {
+      await filmService.addRating(id, rating); // Send the new rating to the backend
+      const updatedRating = await filmService.getAverageRating(id);
+      setRating(updatedRating);
+      setRatingPopup(false); // Close the rating popup after submission
+    } catch (error) {
+      console.error("Error submitting rating:", error);
     }
   };
 
@@ -135,6 +148,14 @@ export default function Film() {
               alt="star-emoji"
             />
             <p className="text-white text-2xl">{rating.averageRating}</p>
+          </div>
+          <div className="">
+            <button
+              onClick={() => setRatingPopup(true)}
+              className="bg-white text-black py-2 px-5 rounded-md hover:bg-gray-200"
+            >
+              Add Rating
+            </button>
           </div>
           <p className="text-white">Total Ratings : {rating.totalRatings}</p>
         </div>
@@ -189,6 +210,14 @@ export default function Film() {
           handleSubmit={handleUpdateSubmit}
           handleChange={(e) => setNewComment(e.target.value)}
           comment={newComment}
+        />
+      )}
+
+      {/* Add Rating Popup */}
+      {ratingPopup && (
+        <Rating
+          handleSubmit={handleRatingSubmit}
+          turnOff={() => setRatingPopup(false)}
         />
       )}
     </div>
