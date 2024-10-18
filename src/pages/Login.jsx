@@ -17,8 +17,12 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await AuthService.login(email, password);
-      navigate("/screening");
+      let response = await AuthService.login(email, password);
+      if (response.User.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/screening");
+      }
       window.location.reload();
     } catch (error) {
       const errorMessage =

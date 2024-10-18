@@ -110,7 +110,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
           <Route
             path="/film/:id"
             element={

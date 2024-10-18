@@ -86,6 +86,36 @@ const addRating = async (filmId, newRating) => {
 }
 
 
+const addFilm = async (filmData) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    const formData = new FormData();
+    formData.append("name", filmData.name);
+    formData.append("description", filmData.description);
+    formData.append("duration", filmData.duration);
+    formData.append("status", filmData.status);
+    formData.append("category", filmData.category);
+
+    // Append files (poster and video) if they exist
+    formData.append("poster", filmData.poster); // file input for the poster
+    formData.append("video", filmData.video); // file input for the video
+
+    try {
+        const response = await axios.post(API_URL + `/create`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`, // Ensure 'Bearer' is capitalized
+                "Content-Type": "multipart/form-data", // FormData requires this content type
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Error adding film:", error.response || error.message);
+        throw error;
+    }
+};
+
+
 const filmService = {
     allFilms,
     oneFilm,
@@ -93,7 +123,8 @@ const filmService = {
     addFavorite,
     removeFavorite,
     getAverageRating,
-    addRating
+    addRating,
+    addFilm
 }
 
 export default filmService;

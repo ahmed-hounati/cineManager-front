@@ -73,7 +73,7 @@ export default function Dashboard() {
         {/* Main Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* All Reservations */}
-          <div className="bg-[#000000] p-6 rounded-md shadow">
+          <div className="bg-[#000000] px-8 rounded-md shadow">
             <h3 className="text-lg font-semibold mb-4">All Reservations</h3>
             <p className="text-6xl font-bold text-green-600">{reservations}</p>
           </div>
