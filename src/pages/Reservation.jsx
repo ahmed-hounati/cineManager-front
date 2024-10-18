@@ -59,7 +59,7 @@ export default function Reservation() {
   };
 
   return (
-    <div className="text-center p-8 text-white">
+    <div className="text-center p-8 bg-[#181d25] text-white">
       <h2 className="text-4xl font-semibold mb-2">Available Seats</h2>
       <h2 className="text-xl font-semibold mb-2">Select Your Seats</h2>
       <div className="grid grid-cols-11 gap-2 text-center md:grid-cols-8">

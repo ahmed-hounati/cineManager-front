@@ -41,15 +41,12 @@ export default function Dashboard() {
 
   return (
     <div className="flex h-screen bg-[#181d25] text-white">
-      {/* Sidebar */}
-      <Sidebar />
-
       {/* Main Content */}
       <div className="flex-1 p-8 bg-[#181d25]">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold">
-            Hi, Welcome back {user.name}
+          <h2 className="text-2xl p-8 font-semibold">
+            👋 Hi, Welcome back {user.name}
           </h2>
         </div>
 

@@ -59,7 +59,7 @@ function App() {
       {!hideSidebar && (
         <Sidebar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       )}
-      <div className={`flex-1 ${!hideSidebar ? "ml-64" : ""}`}>
+      <div className="flex-1">
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
