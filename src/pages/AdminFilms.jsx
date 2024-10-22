@@ -7,6 +7,7 @@ export default function AdminFilms() {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showUpdate, setShowUpdate] = useState(false);
 
   useEffect(() => {
     const fetchFavFilms = async () => {
@@ -22,17 +23,10 @@ export default function AdminFilms() {
     fetchFavFilms();
   }, []);
 
-  const handleEdit = (id) => {};
-
-  const handleDelete = (id) => {
-    const filteredFilms = films.filter((film) => film.id !== id);
-    setFilms(filteredFilms);
-  };
-
   return (
-    <div className="p-8 text-white">
-      <div className="flex flex-row justify-between items-center">
-        <h1 className="text-2xl font-bold py-8">Manage Films</h1>
+    <div className="text-white">
+      <h1 className="text-2xl text-center mt-2 font-bold">Manage Films</h1>
+      <div className="flex justify-end px-8">
         <button
           onClick={() => setShowModal(true)}
           className="bg-white text-black py-2 px-5 rounded-md hover:bg-gray-200"
@@ -41,7 +35,16 @@ export default function AdminFilms() {
         </button>
       </div>
 
-      <FilmsTable films={films} onEdit={handleEdit} onDelete={handleDelete} />
+      <FilmsTable
+        data={films.map((film) => ({
+          name: film.name,
+          duration: film.duration,
+          status: film.status,
+          id: film._id,
+          description: film.description,
+          category: film.category,
+        }))}
+      />
 
       {/* Modal for adding a film */}
       <AddFilmModal

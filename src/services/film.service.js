@@ -15,7 +15,7 @@ const allFilms = async () => {
 
 const oneFilm = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    const film = await axios.get(API_URL + `/${id}`, {
+    const film = await axios.get(`${API_URL}/${id}`, {
         headers: {
             Authorization: `bearer ${token}`,
         }
@@ -86,25 +86,26 @@ const addRating = async (filmId, newRating) => {
 }
 
 
-const addFilm = async (filmData) => {
+const addFilm = async (data) => {
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('poster', data.poster);
+    formData.append('video', data.video);
+    formData.append('name', data.name);
+    formData.append('category', data.category);
+    formData.append('description', data.description);
+    formData.append('duration', data.duration);
+    formData.append('status', data.status);
+
+    // Retrieve token from local storage
     let token = JSON.parse(localStorage.getItem("token"));
 
-    const formData = new FormData();
-    formData.append("name", filmData.name);
-    formData.append("description", filmData.description);
-    formData.append("duration", filmData.duration);
-    formData.append("status", filmData.status);
-    formData.append("category", filmData.category);
-
-    // Append files (poster and video) if they exist
-    formData.append("poster", filmData.poster); // file input for the poster
-    formData.append("video", filmData.video); // file input for the video
-
     try {
+        // Send the FormData directly in the axios request
         const response = await axios.post(API_URL + `/create`, formData, {
             headers: {
-                Authorization: `Bearer ${token}`, // Ensure 'Bearer' is capitalized
-                "Content-Type": "multipart/form-data", // FormData requires this content type
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
             },
         });
 
@@ -114,6 +115,7 @@ const addFilm = async (filmData) => {
         throw error;
     }
 };
+
 
 
 const filmService = {

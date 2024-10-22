@@ -1,36 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import UpdateFilm from "./UpdateFilm";
+import filmService from "../services/film.service";
 
-const FilmsTable = ({ films, onEdit, onDelete }) => {
+const FilmsTable = ({ data }) => {
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [selected, setSelected] = useState({});
+
+  const handleEdit = (item) => {
+    setSelected(item);
+    setShowUpdate(true);
+  };
+
+  const handleDelete = async (id) => {
+    await filmService.delete(id);
+  };
+  if (data.length == 0) return <></>;
+
+  const keys = Object.keys(data[0]);
   return (
-    <div className="overflow-x-auto bg-[#000000] text-white">
-      <table className="min-w-full border border-gray-800 p-8">
+    <div className="overflow-x-auto m-4 bg-[#000000] text-white">
+      <table className="min-w-full border border-gray-800">
         <thead>
           <tr className="text-left">
-            <th className="p-4 border-b">Title</th>
-            <th className="p-4 border-b">Duration</th>
-            <th className="p-4 mr-1 border-b">Status</th>
+            {keys.map((key) => (
+              <th className="p-4 border-b">{key}</th>
+            ))}
             <th className="p-4 border-b text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {films.map((film) => (
-            <tr key={film.id} className="border-b hover:bg-gray-800">
-              <td className="p-4">{film.name}</td>
-              <td className="p-4">{film.duration}</td>
-              <td className="p-4">
-                <span className={`px-2 py-1 rounded-full text-sm`}>
-                  Available
-                </span>
-              </td>
+          {data.map((item) => (
+            <tr key={item.id} className="border-b hover:bg-gray-800">
+              {Object.keys(item).map((key) => (
+                <td className="p-4">{item[key]}</td>
+              ))}
               <td className="p-4 text-center">
                 <button
-                  onClick={() => onEdit(film.id)}
+                  onClick={() => handleEdit(item)}
                   className="text-yellow-500 hover:text-yellow-700 mx-2"
                 >
-                  <i className="fas fa-edit"></i> {/* Edit Icon */}
+                  <i className="fas fa-edit"></i>
                 </button>
                 <button
-                  onClick={() => onDelete(film.id)}
+                  onClick={() => handleDelete(item.id)}
                   className="text-red-500 hover:text-red-700 mx-2"
                 >
                   <i className="fas fa-trash"></i>
@@ -40,6 +52,11 @@ const FilmsTable = ({ films, onEdit, onDelete }) => {
           ))}
         </tbody>
       </table>
+      <UpdateFilm
+        show={showUpdate}
+        onClose={() => setShowUpdate(false) && fetchFavFilms()}
+        film={selected}
+      />
     </div>
   );
 };

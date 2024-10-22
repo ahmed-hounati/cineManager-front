@@ -2,7 +2,7 @@ import React from "react";
 import filmService from "../services/film.service";
 import useFormData from "../hooks/useFormData";
 
-const AddFilmModal = ({ show, onClose }) => {
+const UpdateFilm = ({ show, onClose, film }) => {
   const { formData, onSubmit, handleChange } = useFormData({
     name: "",
     category: "",
@@ -26,12 +26,10 @@ const AddFilmModal = ({ show, onClose }) => {
     return null;
   }
 
-
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-gray-800 text-white p-6 rounded-md w-[500px]">
-        <h2 className="text-xl font-bold mb-4">Add New Film</h2>
+        <h2 className="text-xl font-bold mb-4">Update Film</h2>
         <form>
           <div className="flex flex-row items-center justify-between gap-6 ">
             <div>
@@ -40,7 +38,7 @@ const AddFilmModal = ({ show, onClose }) => {
                 <input
                   type="text"
                   placeholder="film name"
-                  value={name}
+                  value={film.name}
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-black py-2 border rounded-md"
                   name="name"
@@ -51,7 +49,7 @@ const AddFilmModal = ({ show, onClose }) => {
                 <input
                   type="text"
                   placeholder="film description..."
-                  value={description}
+                  value={film.description}
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-black py-2 border rounded-md"
                   name="description"
@@ -62,7 +60,7 @@ const AddFilmModal = ({ show, onClose }) => {
                 <input
                   type="text"
                   placeholder="example : 1h30m"
-                  value={duration}
+                  value={film.duration}
                   onChange={(e) => handleChange(e.target)}
                   className="w-full text-black px-4 py-2 border rounded-md"
                   name="duration"
@@ -73,7 +71,7 @@ const AddFilmModal = ({ show, onClose }) => {
                 <input
                   placeholder="film category"
                   type="text"
-                  value={category}
+                  value={film.category}
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-black py-2 border rounded-md"
                   name="category"
@@ -85,7 +83,7 @@ const AddFilmModal = ({ show, onClose }) => {
                 <label className="block">Status</label>
                 <input
                   type="text"
-                  value={status}
+                  value={film.status}
                   placeholder="available or not"
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-black py-2 border rounded-md"
@@ -98,7 +96,7 @@ const AddFilmModal = ({ show, onClose }) => {
                   type="file"
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-white py-2 border rounded-md"
-                  name='poster'
+                  name="poster"
                 />
               </div>
               <div className="mb-4 text-white">
@@ -107,7 +105,7 @@ const AddFilmModal = ({ show, onClose }) => {
                   type="file"
                   onChange={(e) => handleChange(e.target)}
                   className="w-full px-4 text-white py-2 border rounded-md"
-                  name='video'
+                  name="video"
                 />
               </div>
             </div>
@@ -135,4 +133,4 @@ const AddFilmModal = ({ show, onClose }) => {
   );
 };
 
-export default AddFilmModal;
+export default UpdateFilm;

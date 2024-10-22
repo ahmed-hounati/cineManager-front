@@ -22,6 +22,9 @@ import Dashboard from "./pages/UserDashboard";
 import Account from "./pages/Account";
 import Sidebar from "./components/Sidebar";
 import Film from "./pages/Film";
+import PrivateRoute from "./routes/privateRouter";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminFilms from "./pages/AdminFilms";
 
 function App() {
   const location = useLocation();
@@ -43,11 +46,6 @@ function App() {
     location.pathname === "/about" ||
     location.pathname === "/" ||
     location.pathname === "/contact";
-
-  // Protected Route Component
-  const PrivateRoute = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
-  };
 
   // Guest Route Component to prevent authenticated users from accessing login/signup
   const GuestRoute = ({ children }) => {
@@ -105,7 +103,7 @@ function App() {
           <Route
             path="/reservation/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Reservation />
               </PrivateRoute>
             }
@@ -113,7 +111,7 @@ function App() {
           <Route
             path="/film/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Film />
               </PrivateRoute>
             }
@@ -122,7 +120,7 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Dashboard />
               </PrivateRoute>
             }
@@ -130,7 +128,7 @@ function App() {
           <Route
             path="/account"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Account />
               </PrivateRoute>
             }
@@ -138,7 +136,7 @@ function App() {
           <Route
             path="/screen/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Screen />
               </PrivateRoute>
             }
@@ -146,7 +144,7 @@ function App() {
           <Route
             path="/films"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Films />
               </PrivateRoute>
             }
@@ -154,8 +152,27 @@ function App() {
           <Route
             path="/screening"
             element={
-              <PrivateRoute>
+              <PrivateRoute role="client">
                 <Screening />
+              </PrivateRoute>
+            }
+          />
+
+          {/*Admin routes*/}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <PrivateRoute role="admin">
+                <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin/films"
+            element={
+              <PrivateRoute role="admin">
+                <AdminFilms />
               </PrivateRoute>
             }
           />
