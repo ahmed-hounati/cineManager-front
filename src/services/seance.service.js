@@ -16,14 +16,21 @@ const oneSeance = async (id) => {
     const response = await axios.get(API_URL + `/${id}`, {
         headers: { Authorization: `bearer ${token}` }
     });
-    console.log(response.data);
-    
     return response.data;
 };
 
+const addSeance = async (data) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const response = await axios.post(API_URL + `/create`, data, {
+        headers: { Authorization: `bearer ${token}` }
+    });
+    return response.data;
+}
+
 const SeanceService = {
     allSeances,
-    oneSeance
+    oneSeance,
+    addSeance
 }
 
 export default SeanceService;

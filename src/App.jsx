@@ -25,6 +25,8 @@ import Film from "./pages/Film";
 import PrivateRoute from "./routes/privateRouter";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminFilms from "./pages/AdminFilms";
+import AdminSeance from "./pages/AdminSeances";
+import AdminUsers from "./pages/AdminUsers";
 
 function App() {
   const location = useLocation();
@@ -173,6 +175,24 @@ function App() {
             element={
               <PrivateRoute role="admin">
                 <AdminFilms />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin/seances"
+            element={
+              <PrivateRoute role="admin">
+                <AdminSeance />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin/users"
+            element={
+              <PrivateRoute role="admin">
+                <AdminUsers />
               </PrivateRoute>
             }
           />

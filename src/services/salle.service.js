@@ -7,12 +7,20 @@ const salle = async (id, seanceId) => {
     const response = await axios.get(API_URL + `/${id}?seanceId=${seanceId}`, {
         headers: { Authorization: `bearer ${token}` }
     });
-    console.log(response.data);
     return response.data;
 };
 
+const allSales = async () => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    const response = await axios.get(API_URL, {
+        headers: { Authorization: `bearer ${token}` }
+    });
+    return response.data;
+}
+
 const SalleService = {
-    salle
+    salle,
+    allSales
 }
 
 export default SalleService;

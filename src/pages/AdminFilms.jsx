@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FilmsTable from "../components/FilmsTable";
-import AddFilmModal from "../components/AddFilmModal";
+import AddFilmModal from "../components/AddFilm";
 import filmService from "../services/film.service";
 
 export default function AdminFilms() {
